@@ -1,0 +1,7 @@
+--recursive
+--require babel-core/register
+--require babel-core/register
+--require ts-node/register
+--require coffeescript/register
+
+--grep /./i
