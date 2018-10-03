@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/native/hash-filter.js';
-const hashFilter = require(`../../${ipath}`);
+const hashFilter = require('../../src/native/hash-filter.js');
 
 
-describe(ipath, function() {
+describe('native/hash-filter', function() {
   describe('@hashFilter(any, excepts)', function() {
     [
       // 数据合法性

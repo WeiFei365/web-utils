@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/native/json-from.js';
-const jsonFrom = require(`../../${ipath}`);
+const jsonFrom = require('../../src/native/json-from.js');
 
 
-describe(ipath, function() {
+describe('native/json-from', function() {
   describe('@jsonFrom(data, dft)', function() {
     [
       // 数据合法性

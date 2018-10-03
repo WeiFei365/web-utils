@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/date/date-constructor.js';
-const dateConstructor = require(`../../${ipath}`);
+const dateConstructor = require('../../src/date/date-constructor.js');
 
 
-describe(ipath, function() {
+describe('date/date-constructor', function() {
   describe('@dateConstructor(any, isSelf)', function() {
     [
       // 非法数据

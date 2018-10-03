@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/date/date-set.js';
-const dateSet = require(`../../${ipath}`);
+const dateSet = require('../../src/date/date-set.js');
 
 
-describe(ipath, function() {
+describe('date/date-set', function() {
   describe('@dateSet(date, endPoint, timezone)', function() {
     // 参数值: endPoint
     [

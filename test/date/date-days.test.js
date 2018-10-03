@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/date/date-days.js';
-const dateDays = require(`../../${ipath}`);
+const dateDays = require('../../src/date/date-days.js');
 
 
-describe(ipath, function() {
+describe('date/date-days', function() {
   describe('@dateDays(start, end)', function() {
     [
       // 毫秒值

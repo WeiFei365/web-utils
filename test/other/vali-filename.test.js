@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/other/vali-filename.js';
-const valiFilename = require(`../../${ipath}`);
+const valiFilename = require('../../src/other/vali-filename.js');
 
 
-describe(ipath, function() {
+describe('other/vali-filename', function() {
   describe('@valiFilename(name, dftChar)', function() {
     [
       [undefined, undefined, ''],

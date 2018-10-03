@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/number/beauty-unit.js';
-const beautyUnit = require(`../../${ipath}`);
+const beautyUnit = require('../../src/number/beauty-unit.js');
 
 
-describe(ipath, function() {
+describe('number/beauty-unit', function() {
   describe('@beautyUnit(n)', function() {
     [
       [undefined, '0'],

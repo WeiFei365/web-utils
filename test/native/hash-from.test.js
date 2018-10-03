@@ -1,11 +1,10 @@
 const assert = require('assert');
 
-const ipath = 'src/native/hash-from.js';
-const hashFrom = require(`../../${ipath}`);
+const hashFrom = require('../../src/native/hash-from.js');
 const jsonFrom = require('../../src/native/json-from.js');
 
 
-describe(ipath, function() {
+describe('native/hash-from', function() {
   describe('@hashFrom(str, isValueJson, isLowerCaseKey)', function() {
     [
       // 数据合法性

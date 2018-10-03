@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/native/hash-to.js';
-const hashTo = require(`../../${ipath}`);
+const hashTo = require('../../src/native/hash-to.js');
 
 
-describe(ipath, function() {
+describe('native/hash-to', function() {
   describe('@hashTo(data)', function() {
     [
       // 数据合法性

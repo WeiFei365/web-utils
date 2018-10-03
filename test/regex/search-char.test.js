@@ -1,11 +1,10 @@
 const assert = require('assert');
 
-const ipath = 'src/regex/search-char.js';
-const regexSearchChar = require(`../../${ipath}`);
+const regexSearchChar = require('../../src/regex/search-char.js');
 const jsonFrom = require('../../src/native/json-from.js');
 
 
-describe(ipath, function() {
+describe('regex/search-char', function() {
   describe('@regexSearchChar(chars, opts)', function() {
     [
       [undefined, undefined, {}],

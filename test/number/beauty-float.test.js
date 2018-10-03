@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/number/beauty-float.js';
-const beautyFloat = require(`../../${ipath}`);
+const beautyFloat = require('../../src/number/beauty-float.js');
 
 
-describe(ipath, function() {
+describe('number/beauty-float', function() {
   describe('@beautyFloat(n, count, noZero)', function() {
     [
       // 参数: n

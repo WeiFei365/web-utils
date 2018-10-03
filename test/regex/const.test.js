@@ -1,13 +1,12 @@
 const assert = require('assert');
 
-const ipath = 'src/regex/const.js';
 const {
   regexPhone,
   regexEmail,
-} = require(`../../${ipath}`);
+} = require('../../src/regex/const.js');
 
 
-describe(ipath, function() {
+describe('regex/const', function() {
   describe('@regexPhone', function() {
     [
       ['15506000365', true],

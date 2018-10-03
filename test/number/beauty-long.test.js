@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/number/beauty-long.js';
-const beautyLong = require(`../../${ipath}`);
+const beautyLong = require('../../src/number/beauty-long.js');
 
 
-describe(ipath, function() {
+describe('number/beauty-long', function() {
   describe('@beautyLong(n, byLeft, flag, noZero)', function() {
     [
       // 参数: n

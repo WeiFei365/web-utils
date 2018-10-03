@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const ipath = 'src/date/date-format.js';
-const dateFormat = require(`../../${ipath}`);
+const dateFormat = require('../../src/date/date-format.js');
 
 
-describe(ipath, function() {
+describe('date/date-format', function() {
   describe('@dateFormat(date, pattern)', function() {
     [
       // 毫秒值
