@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const dateDays = require('../../src/date/date-days.js');
 
 
@@ -21,7 +19,7 @@ describe('date/date-days', function() {
       const start = d[0];
       const end = d[1];
       it(`dateDays(${start}, ${end}) should return ${d[2]}`, function() {
-        assert.strictEqual(dateDays.default(start, end), d[2]);
+        chai.assert.strictEqual(dateDays.default(start, end), d[2]);
       });
     });
   });

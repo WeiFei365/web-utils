@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const jsonFrom = require('../../src/native/json-from.js');
 
 
@@ -9,6 +7,7 @@ describe('native/json-from', function() {
       // 数据合法性
       [undefined, undefined, ''],
       [null, undefined, ''],
+      [NaN, undefined, ''],
       ['', undefined, '""'],
       [1, undefined, '1'],
       [true, undefined, 'true'],
@@ -21,7 +20,7 @@ describe('native/json-from', function() {
       const data = d[0];
       const dft = d[1];
       it(`jsonFrom(${data}, ${dft}) should return ${d[2]}`, function() {
-        assert.strictEqual(jsonFrom.default(data, dft), d[2]);
+        chai.assert.strictEqual(jsonFrom.default(data, dft), d[2]);
       });
     });
   });

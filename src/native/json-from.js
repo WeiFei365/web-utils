@@ -1,3 +1,6 @@
+import _isNaN from 'lodash/isNaN';
+
+
 /**
  * [安全的调用JSON.stringify]
  * @author WEIFEI
@@ -7,7 +10,7 @@
  * @return {[type]}          [description]
  */
 export default function jsonFrom(jsondata, dft = '') {
-  if (jsondata === null || jsondata === undefined) {
+  if (jsondata === null || jsondata === undefined || _isNaN(jsondata)) {
     return dft;
   }
 

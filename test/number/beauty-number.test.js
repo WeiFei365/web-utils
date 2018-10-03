@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const beautyNumber = require('../../src/number/beauty-number.js');
 
 
@@ -21,7 +19,7 @@ describe('number/beauty-number', function() {
       const n = d[0];
       const noZero = d[1];
       it(`beautyNumber(${n}, ${noZero}) should return ${d[2]}`, function() {
-        assert.strictEqual(beautyNumber.default(n, noZero), d[2]);
+        chai.assert.strictEqual(beautyNumber.default(n, noZero), d[2]);
       });
     });
   });

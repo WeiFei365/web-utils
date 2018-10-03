@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const dateFormat = require('../../src/date/date-format.js');
 
 
@@ -20,7 +18,7 @@ describe('date/date-format', function() {
       const date = d[0];
       const pattern = d[1];
       it(`dateFormat(${date}, ${pattern}) should return ${d[2]}`, function() {
-        assert.strictEqual(dateFormat.default(date, pattern), d[2]);
+        chai.assert.strictEqual(dateFormat.default(date, pattern), d[2]);
       });
     });
   });

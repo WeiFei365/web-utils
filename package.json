@@ -6,7 +6,8 @@
   "scripts": {
     "mocha:init": "mocha init",
     "mocha:docs": "mocha --reporter mochawesome --reporter-options reportDir=./docs,reportFilename=index,cdn=true",
-    "start": "webpack --mode production --config webpack/webpack.config.dev.js --color --hide-modules --display-optimization-bailout"
+    "docs": "webpack --mode development --config webpack/webpack.config.dev.js --color --hide-modules --display-optimization-bailout",
+    "start": "webpack-dev-server --mode development --config webpack/webpack.config.dev.js --color --hide-modules --display-optimization-bailout"
   },
   "engines": {
     "npm": ">=5",

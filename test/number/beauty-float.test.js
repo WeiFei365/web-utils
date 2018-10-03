@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const beautyFloat = require('../../src/number/beauty-float.js');
 
 
@@ -29,7 +27,7 @@ describe('number/beauty-float', function() {
       const count = d[1];
       const noZero = d[2];
       it(`beautyFloat(${n}, ${count}, ${noZero}) should return ${d[3]}`, function() {
-        assert.strictEqual(beautyFloat.default(n, count, noZero), d[3]);
+        chai.assert.strictEqual(beautyFloat.default(n, count, noZero), d[3]);
       });
     });
   });

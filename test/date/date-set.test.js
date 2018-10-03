@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const dateSet = require('../../src/date/date-set.js');
 
 
@@ -21,7 +19,7 @@ describe('date/date-set', function() {
       const endPoint = d[0];
       const timezone = d[2];
       it(`dateSet(${date}, ${endPoint}, ${timezone}) should return ${d[1]}`, function() {
-        assert.strictEqual(dateSet.default(date, endPoint, timezone).getTime(), d[1]);
+        chai.assert.strictEqual(dateSet.default(date, endPoint, timezone).getTime(), d[1]);
       });
     });
   });

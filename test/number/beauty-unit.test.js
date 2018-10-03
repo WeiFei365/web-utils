@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const beautyUnit = require('../../src/number/beauty-unit.js');
 
 
@@ -26,7 +24,7 @@ describe('number/beauty-unit', function() {
     ].forEach((d) => {
       const n = d[0];
       it(`beautyUnit(${n}) should return ${d[1]}`, function() {
-        assert.strictEqual(beautyUnit.default(n), d[1]);
+        chai.assert.strictEqual(beautyUnit.default(n), d[1]);
       });
     });
   });

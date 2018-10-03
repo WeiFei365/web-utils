@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const regexSearchChar = require('../../src/regex/search-char.js');
 const jsonFrom = require('../../src/native/json-from.js');
 
@@ -19,7 +17,7 @@ describe('regex/search-char', function() {
       const chars = d[0];
       const opts = d[1];
       it(`regexSearchChar(${chars}, ${opts}) should return ${jsonFrom.default(d[2])}`, function() {
-        assert.deepStrictEqual(regexSearchChar.default(chars, opts), d[2]);
+        chai.assert.deepStrictEqual(regexSearchChar.default(chars, opts), d[2]);
       });
     });
   });

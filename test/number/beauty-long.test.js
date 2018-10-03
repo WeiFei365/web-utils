@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const beautyLong = require('../../src/number/beauty-long.js');
 
 
@@ -26,7 +24,7 @@ describe('number/beauty-long', function() {
       const flag = d[2];
       const noZero = d[3];
       it(`beautyLong(${n}, ${byLeft}, ${flag}, ${noZero}) should return ${d[4]}`, function() {
-        assert.strictEqual(beautyLong.default(n, byLeft, flag, noZero), d[4]);
+        chai.assert.strictEqual(beautyLong.default(n, byLeft, flag, noZero), d[4]);
       });
     });
   });

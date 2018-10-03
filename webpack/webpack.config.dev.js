@@ -11,7 +11,7 @@ const config = {
   output: {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
-    path: path.resolve(process.cwd(), 'webpack/build')
+    path: path.resolve(process.cwd(), 'docs')
   },
   module: {
     rules: [
@@ -43,8 +43,6 @@ const config = {
   // },
   resolve: {
     alias: {
-      it: 'it',
-      describe: 'describe',
     }
   },
   plugins: [
@@ -53,10 +51,10 @@ const config = {
       inject: true,
     })
   ],
-  // devtool: 'inline-source-map',
+  // devtool: 'eval-source-map',
   devServer: {
     progress: false,
-    contentBase: path.resolve(process.cwd(), 'webpack'),
+    contentBase: path.resolve(process.cwd(), 'docs'),
   },
 };
 

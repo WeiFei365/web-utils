@@ -73,8 +73,8 @@ const store = {
 const localKeys = {};
 // 内置交互KEY 字段
 const localDft = {
-  string: (v) => [null, undefined].indexOf(v) !== -1 ? String(v) : '',
-  stringTrim: (v) => localDft.a.string(v).trim(),
+  string: (v) => [null, undefined].indexOf(v) === -1 ? String(v) : '',
+  stringTrim: (v) => localDft.string(v).trim(),
   number: (v) => +v,
   number0: (v) => _isNaN(+v) ? 0 : +v,
   number1: (v) => _isNaN(+v) ? 1 : +v,
@@ -136,20 +136,15 @@ export function lstoreInit(isForce = false) {
   }
   // 要加载到程序内的所有数据的 交互KEY 列表
   const lkeys = Object.keys(localKeys);
-  // 清空已有
-  lkeys.forEach((name) => (delete store[name]));
-  // 从localStorage读取指定key的数据
-  for (let i = 0, lth = localStorage.length; i < lth; i++) {
-    const name = localStorage.key(i);
-    if (lkeys.indexOf(name) !== -1) {
-      store[name] = jsonTo(localStorage.getItem(name));
-    }
-  }
-  // 验证已加载的数据正确性: 根据用户设定的校验器或默认校验器
   lkeys.forEach((name) => {
+    // 从localStorage读取指定key的数据
+    store[name] = jsonTo(localStorage.getItem(name));
+    // 验证已加载的数据正确性: 根据用户设定的校验器或默认校验器
     const vali = localDft[localKeys[name]] ? localDft[localKeys[name]] : localKeys[name];
     store[name] = vali(store[name], store);
   });
+
+  delete store._initialized;
 }
 
 export function lstoreKeys(useKeys) {

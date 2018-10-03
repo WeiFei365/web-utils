@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const hashTo = require('../../src/native/hash-to.js');
 
 
@@ -17,7 +15,7 @@ describe('native/hash-to', function() {
     ].forEach((d) => {
       const data = d[0];
       it(`hashTo(${data}) should return ${d[1]}`, function() {
-        assert.strictEqual(hashTo.default(data), d[1]);
+        chai.assert.strictEqual(hashTo.default(data), d[1]);
       });
     });
   });

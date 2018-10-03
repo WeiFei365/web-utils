@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const jsonTo = require('../../src/native/json-to.js');
 const jsonFrom = require('../../src/native/json-from.js');
 
@@ -22,7 +20,7 @@ describe('native/json-to', function() {
       const jsonstr = d[0];
       const dft = d[1];
       it(`jsonTo(${jsonstr}, ${dft}) should return ${jsonFrom.default(d[2])}`, function() {
-        assert.deepStrictEqual(jsonTo.default(jsonstr, dft), d[2]);
+        chai.assert.deepStrictEqual(jsonTo.default(jsonstr, dft), d[2]);
       });
     });
   });

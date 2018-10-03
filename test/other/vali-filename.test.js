@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const valiFilename = require('../../src/other/vali-filename.js');
 
 
@@ -16,7 +14,7 @@ describe('other/vali-filename', function() {
       const name = d[0];
       const dftChar = d[1];
       it(`valiFilename(${name}, ${dftChar}) should return ${d[2]}`, function() {
-        assert.strictEqual(valiFilename.default(name, dftChar), d[2]);
+        chai.assert.strictEqual(valiFilename.default(name, dftChar), d[2]);
       });
     });
   });

@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const hashFrom = require('../../src/native/hash-from.js');
 const jsonFrom = require('../../src/native/json-from.js');
 
@@ -30,7 +28,7 @@ describe('native/hash-from', function() {
       const isValueJson = d[1];
       const isLowerCaseKey = d[2];
       it(`hashFrom(${str}, ${isValueJson}, ${isLowerCaseKey}) should return ${jsonFrom.default(d[3])}`, function() {
-        assert.deepStrictEqual(hashFrom.default(str, isValueJson, isLowerCaseKey), d[3]);
+        chai.assert.deepStrictEqual(hashFrom.default(str, isValueJson, isLowerCaseKey), d[3]);
       });
     });
   });

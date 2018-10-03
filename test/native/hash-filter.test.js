@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const hashFilter = require('../../src/native/hash-filter.js');
 
 
@@ -24,7 +22,7 @@ describe('native/hash-filter', function() {
       const any = d[0];
       const excepts = d[1];
       it(`hashFilter(${any}, ${excepts}) should return ${d[2]}`, function() {
-        assert.strictEqual(hashFilter.default(any, excepts), d[2]);
+        chai.assert.strictEqual(hashFilter.default(any, excepts), d[2]);
       });
     });
   });

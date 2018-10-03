@@ -1,5 +1,5 @@
 /**
- * [操作 history/localtion 工具包]
+ * [操作 history/location 工具包]
  * @author  WEIFEI
  * @description history is a JavaScript library that lets you easily manage session history anywhere JavaScript runs.
  *              history abstracts away the differences in various environments and provides a minimal API
@@ -17,7 +17,7 @@
  *          @param {String} path  [路径, 支持: 'searchJson.user' 层级路径, 目前可取的数据有:
  *                                action: 当前路由的触发方式,
  *                                pathname: 当前 location 的 pathname,
- *                                searchString: 当前 location 的 search 字符串,
+ *                                searchString: 当前 location 的 search 字符串, 注意: 这里的参数未 decode, 下同,
  *                                searchJson: 当前 location 的 search 的 json 格式,
  *                                hashString: 当前 location 的 hash 字符串,
  *                                hashJson: 当前 location 的 hash 的 json 格式,
@@ -37,8 +37,8 @@ import _get from 'lodash/get';
 import _assign from 'lodash/assign';
 import createHistory from 'history/createBrowserHistory';
 
-import hashFilter from '../filter-hash';
-import hashFrom from '../from-hash';
+import hashFilter from '../native/hash-filter';
+import hashFrom from '../native/hash-from';
 
 
 // 存储池

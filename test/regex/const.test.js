@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const {
   regexPhone,
   regexEmail,
@@ -17,7 +15,7 @@ describe('regex/const', function() {
       ['123456789012', false],
     ].forEach((d) => {
       it(`regexPhone:test:${d[0]} should return ${d[1]}`, function() {
-        assert.strictEqual(regexPhone.test(d[0]), d[1]);
+        chai.assert.strictEqual(regexPhone.test(d[0]), d[1]);
       });
     });
   });
@@ -33,7 +31,7 @@ describe('regex/const', function() {
       ['_@gmail.com', true],
     ].forEach((d) => {
       it(`regexEmail:test:${d[0]} should return ${d[1]}`, function() {
-        assert.strictEqual(regexEmail.test(d[0]), d[1]);
+        chai.assert.strictEqual(regexEmail.test(d[0]), d[1]);
       });
     });
   });

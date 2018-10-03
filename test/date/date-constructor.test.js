@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const dateConstructor = require('../../src/date/date-constructor.js');
 
 
@@ -18,7 +16,7 @@ describe('date/date-constructor', function() {
       const any = d[0];
       const isSelf = d[1];
       it(`dateConstructor(${any}, ${isSelf}) should return ${d[2]}`, function() {
-        assert.strictEqual(dateConstructor.default(any, isSelf).getTime(), d[2]);
+        chai.assert.strictEqual(dateConstructor.default(any, isSelf).getTime(), d[2]);
       });
     });
     // isSelf 标志
@@ -28,7 +26,7 @@ describe('date/date-constructor', function() {
       it(`dateConstructor(${any}, ${isSelf}) should return not itself`, function() {
         const v = dateConstructor.default(any, isSelf);
         v.setMilliseconds(0);
-        assert.notStrictEqual(v.getTime(), any.getTime());
+        chai.assert.notStrictEqual(v.getTime(), any.getTime());
       });
     }
     {
@@ -37,7 +35,7 @@ describe('date/date-constructor', function() {
       it(`dateConstructor(${any}, ${isSelf}) should return itself`, function() {
         const v = dateConstructor.default(any, isSelf);
         v.setMilliseconds(0);
-        assert.strictEqual(v.getTime(), any.getTime());
+        chai.assert.strictEqual(v.getTime(), any.getTime());
       });
     }
   });
