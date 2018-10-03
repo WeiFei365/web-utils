@@ -30,27 +30,27 @@ describe('store/history', function() {
 
   describe('@lctPush(params)', function() {
     // string
-    it('lctPush(/#test=abc) should return true', function() {
-      lctPush('/#test=abc');
-      chai.assert.deepStrictEqual((() => location.pathname === '/' && location.hash === '#test=abc')(), true);
+    it(`lctPush(${location.pathname}#test=abc) should return true`, function() {
+      lctPush(`${location.pathname}#test=abc`);
+      chai.assert.deepStrictEqual((() => location.hash === '#test=abc')(), true);
     });
     // object
-    it('lctPush({ pathname: "/", hash: "#h=123", search: "s=abc" }) should return true', function() {
-      lctPush({ pathname: '/', hash: '#h=123', search: '?s=abc' });
-      chai.assert.deepStrictEqual((() => location.pathname === '/' && location.hash === '#h=123' && location.search === '?s=abc')(), true);
+    it(`lctPush({ pathname: "${location.pathname}", hash: "#h=123", search: "s=abc" }) should return true`, function() {
+      lctPush({ pathname: location.pathname, hash: '#h=123', search: '?s=abc' });
+      chai.assert.deepStrictEqual((() => location.hash === '#h=123' && location.search === '?s=abc')(), true);
     });
   });
 
   describe('@lctReplace(params)', function() {
     // string
-    it('lctReplace(/#test=123) should return true', function() {
-      lctReplace('/#test=123');
-      chai.assert.deepStrictEqual((() => location.pathname === '/' && location.hash === '#test=123')(), true);
+    it(`lctReplace(${location.pathname}#test=123) should return true`, function() {
+      lctReplace(`${location.pathname}#test=123`);
+      chai.assert.deepStrictEqual((() => location.hash === '#test=123')(), true);
     });
     // object
-    it('lctReplace({ pathname: "/", hash: "#h=abc", search: "s=123" }) should return true', function() {
-      lctReplace({ pathname: '/', hash: '#h=abc&h2=def', search: '?s=123&s2=456' });
-      chai.assert.deepStrictEqual((() => location.pathname === '/' && location.hash === '#h=abc&h2=def' && location.search === '?s=123&s2=456')(), true);
+    it(`lctReplace({ pathname: "${location.pathname}", hash: "#h=abc", search: "s=123" }) should return true`, function() {
+      lctReplace({ pathname: location.pathname, hash: '#h=abc&h2=def', search: '?s=123&s2=456' });
+      chai.assert.deepStrictEqual((() => location.hash === '#h=abc&h2=def' && location.search === '?s=123&s2=456')(), true);
     });
   });
 
