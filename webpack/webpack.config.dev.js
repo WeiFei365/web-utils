@@ -6,12 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   entry: {
-    vendors: ['assert'],
+    // vendors: ['assert'],
   },
   output: {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
-    path: path.resolve(process.cwd(), 'docs')
+    path: path.resolve(process.cwd(), 'webpack/build')
   },
   module: {
     rules: [
@@ -24,23 +24,23 @@ const config = {
       },
     ]
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'async',
-      minChunks: 1,
-      name: true,
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        },
-        commons: {
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'async',
+  //     minChunks: 2,
+  //     name: true,
+  //     cacheGroups: {
+  //       vendors: {
+  //         test: /[\\/]node_modules[\\/]|/,
+  //         priority: -10
+  //       },
+  //       commons: {
+  //         name: 'vendors',
+  //         chunks: 'all'
+  //       }
+  //     }
+  //   }
+  // },
   resolve: {
     alias: {
       it: 'it',
@@ -55,7 +55,8 @@ const config = {
   ],
   // devtool: 'inline-source-map',
   devServer: {
-    contentBase: 'docs',
+    progress: false,
+    contentBase: path.resolve(process.cwd(), 'webpack'),
   },
 };
 

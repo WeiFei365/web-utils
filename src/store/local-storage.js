@@ -73,8 +73,8 @@ const store = {
 const localKeys = {};
 // 内置交互KEY 字段
 const localDft = {
-  string: (v) => String(v),
-  stringTrim: (v) => String(v).trim(),
+  string: (v) => [null, undefined].indexOf(v) !== -1 ? String(v) : '',
+  stringTrim: (v) => localDft.a.string(v).trim(),
   number: (v) => +v,
   number0: (v) => _isNaN(+v) ? 0 : +v,
   number1: (v) => _isNaN(+v) ? 1 : +v,
@@ -147,11 +147,8 @@ export function lstoreInit(isForce = false) {
   }
   // 验证已加载的数据正确性: 根据用户设定的校验器或默认校验器
   lkeys.forEach((name) => {
-    if (localDft[name]) {
-      store[name] = localDft[name](store[name], store);
-    } else if (localKeys[name]) {
-      store[name] = localKeys[name](store[name], store);
-    }
+    const vali = localDft[localKeys[name]] ? localDft[localKeys[name]] : localKeys[name];
+    store[name] = vali(store[name], store);
   });
 }
 
