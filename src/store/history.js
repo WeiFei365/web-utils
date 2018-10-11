@@ -97,7 +97,9 @@ export function lctQuery(excepts) {
 }
 
 /**
- * 方便开发调试
+ * 方便开发调试, 嵌套是为了和 store 在同一个作用域内
  * @method MVP_Store_History
  */
-window.MVP_Store_History = () => JSON.parse(JSON.stringify(store));
+window.MVP_Store_History = function() {
+  return () => JSON.parse(JSON.stringify(store));
+};
