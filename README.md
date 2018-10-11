@@ -10,6 +10,11 @@
 
 ### 依赖包说明
 
-* lodash: 使用了lodash中的部分方法，引入的方式为: import _isObject from 'lodash/isObject';
-* fetch 模块依赖了 whatwg-fetch@^2.0.3
-* history 模块依赖了 history@^4.6.3
+  * lodash: 使用了lodash中的部分方法，引入的方式为: import _isObject from 'lodash/isObject';
+  * fetch 模块依赖了 whatwg-fetch@^2.0.3
+  * history 模块依赖了 history@^4.6.3
+
+### 本地开发说明
+
+  * npm start 启动本地开发，需要在浏览器打开 localhost:8080 查看 mocha 测试用例的通过情况
+  * npm run docs 本地开发、测试完成后，打包测试用例，一共 github pages 预览
