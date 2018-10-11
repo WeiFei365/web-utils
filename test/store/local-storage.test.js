@@ -5,6 +5,7 @@ const {
   lstoreSave,
   lstoreSet,
   lstoreGet,
+  MVP_Store_LocalStorage,
 } = require('../../src/store/local-storage.js');
 
 
