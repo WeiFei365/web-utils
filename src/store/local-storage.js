@@ -12,15 +12,34 @@
  * @description 交互KEY [是指 localStorage 中的 KEY, 程序只会从 localStorage 读取已配置 KEY 对应的数据]
  * @description 校验器 [
  *              是指当从 localStorage 中加载数据时, 需要对数据进行校验的函数, 已内置的校验器:
- *              @inner 'string': (v) => String(v) [使用方式为: { test: 'string' }, 下同]
- *              @inner 'stringTrim': (v) => String(v).trim()
- *              @inner 'number': (v) => +v
- *              @inner number0: (v) => lodash.isNaN(+v) ? 0 : +v
- *              @inner number1: (v) => lodash.isNaN(+v) ? 1 : +v
- *              @inner array: (v) => lodash.isArray(v) ? v : [],
- *              @inner object: (v) => lodash.isObject(v) ? v : {},
- *              ]
- * @exports lstoreKeys  [配置需要读写 localStorage 中数据的 交互KEY]
+ *              @inner string:(v, store, dft)       [
+ *                                                  使用方式为: { test: 'string' },
+ *                                                  默认是 string 类型会直接返回,
+ *                                                  默认是 number 类型时会强转成 string,
+ *                                                  其他情况全部返回 '',
+ *                                                  @param v      当前从 localStorage 取出的数据(已转 JSON),
+ *                                                  @param store  当前存储中所有的数据集
+ *                                                  @param dft    默认的交互 KEY 校验器
+ *                                                  下同]
+ *              @inner stringTrim:(v, store, dft)   [
+ *                                                  先调用内置 string 校验器再做 trim]
+ *              @inner number:(v, store, dft)       [
+ *                                                  直接做 '+v' 处理]
+ *              @inner number0:(v, store, dft)      [
+ *                                                  先 '+v', 如果是 NaN 则返回 0]
+ *              @inner number1:(v, store, dft)      [
+ *                                                  先 '+v', 如果是 NaN 则返回 1]
+ *              @inner array:(v, store, dft)        [调用 lodash.isArray 判断]
+ *              @inner arrayString:(v, store, dft)  [
+ *                                                  先调用内置 array 校验器,
+ *                                                  再做 map 调用内置 stringTrim,
+ *                                                  然后做 filter 过滤空字符串]
+ *              @inner arrayNumber:(v, store, dft)  [
+ *                                                  先调用内置 array 校验器,
+ *                                                  再做 map 调用内置 number,
+ *                                                  然后做 filter 过滤 NaN 类型]
+ *              @inner object:(v, store, dft)       [调用 lodash.isObject 判断]
+ * @exports lstoreKeys  [配置需要读写 localStorage 中数据的 交互KEY, 需要在其他接口调用之前调用]
  *          @param {Object} [useKeys] [格式如下: { test: (v, store) => v },
  *                                    其中 'test' 是 交互KEY名称,
  *                                    '(v, store) => v' 是当从 localStorage 中加载该 交互KEY 对应数据时的 校验器,
@@ -64,21 +83,33 @@ import jsonTo from '../native/json-to';
 import jsonFrom from '../native/json-from';
 
 
+const NKEY = `_${Date.now()}_${Math.random()}`;
 // 数据存储池
 const store = {
   // 标记是否已从 localStorage 加载数据
-  _initialized: true,
+  [NKEY]: true,
 };
 // 交互KEY
 const localKeys = {};
 // 内置交互KEY 字段
 const localDft = {
-  string: (v) => [null, undefined].indexOf(v) === -1 ? String(v) : '',
-  stringTrim: (v) => localDft.string(v).trim(),
+  string: (v) => {
+    const type = typeof v;
+    if (type === 'string') {
+      return v;
+    }
+    if (type === 'number') {
+      return String(v);
+    }
+    return '';
+  },
+  stringTrim: (v, s, dft) => dft.string(v, s, dft).trim(),
   number: (v) => +v,
   number0: (v) => _isNaN(+v) ? 0 : +v,
   number1: (v) => _isNaN(+v) ? 1 : +v,
   array: (v) => _isArray(v) ? v : [],
+  arrayString: (v, s, dft) => dft.array(v, s, dft).map((d) => dft.stringTrim(v, s, dft)).filter((d) => !!v),
+  arrayNumber: (v, s, dft) => dft.array(v, s, dft).map((d) => dft.number(v, s, dft)).filter((d) => !_isNaN(d)),
   object: (v) => _isObject(v) ? v : {},
 };
 
@@ -92,7 +123,12 @@ export function lstoreSet(path, value, isMerge = false, isSave = true) {
     }
   }
 
-  // TODO 调用校验器验证 value 的正确性
+  // 验证顶级数据(如果是的话)正确性: 根据用户设定的校验器或默认校验器
+  const vali = localDft[localKeys[path]] ? localDft[localKeys[path]] : localKeys[path];
+  if (vali) {
+    value = vali(value, store, localDft);
+  }
+
   _set(store, path, value);
 
   if (isSave) {
@@ -131,7 +167,7 @@ export function lstoreClear(isAll = false) {
 }
 
 export function lstoreInit(isForce = false) {
-  if (!store._initialized && !isForce) {
+  if (!store[NKEY] && !isForce) {
     return;
   }
   // 要加载到程序内的所有数据的 交互KEY 列表
@@ -141,10 +177,10 @@ export function lstoreInit(isForce = false) {
     store[name] = jsonTo(localStorage.getItem(name));
     // 验证已加载的数据正确性: 根据用户设定的校验器或默认校验器
     const vali = localDft[localKeys[name]] ? localDft[localKeys[name]] : localKeys[name];
-    store[name] = vali(store[name], store);
+    store[name] = vali(store[name], store, localDft);
   });
 
-  delete store._initialized;
+  delete store[NKEY];
 }
 
 export function lstoreKeys(useKeys) {
@@ -152,7 +188,7 @@ export function lstoreKeys(useKeys) {
 }
 
 /**
- * 方便开发调试
+ * 方便开发调试, export 是为了和 store 在同一个作用域内
  * @method MVP_Store_LocalStorage
  */
-window.MVP_Store_LocalStorage = () => jsonTo(jsonFrom(store));
+export const MVP_Store_LocalStorage = window.MVP_Store_LocalStorage = () => jsonTo(jsonFrom(store));

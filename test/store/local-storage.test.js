@@ -17,7 +17,7 @@ describe('store/local-storage', function() {
     'inner-keys-number1': 'number1',
     'inner-keys-array': 'array',
     'inner-keys-object': 'object',
-    'my-keys-test': (v, store) => `${store.user || ''}_${v || ''}`.substr(0, 99),
+    'my-keys-test': (v, store, dft) => dft.stringTrim(v, store, dft).substr(0, 99),
   });
 
   describe('@lstoreSet(path, value, isMerge, isSave)', function() {
@@ -70,6 +70,7 @@ describe('store/local-storage', function() {
 
   describe('@lstoreClear(isAll)', function() {
     it('lstoreClear(false) should return true', function() {
+      lstoreInit();
       lstoreClear(false);
       chai.assert.deepStrictEqual((() => {
         let keys = [];
@@ -97,6 +98,7 @@ describe('store/local-storage', function() {
       })(), true);
     });
     it('lstoreClear(true) should return true', function() {
+      lstoreInit();
       lstoreClear(true);
       chai.assert.deepStrictEqual((() => !Object.keys(MVP_Store_LocalStorage()).length && !localStorage.length)(), true);
     });
