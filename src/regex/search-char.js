@@ -38,6 +38,7 @@ export default function regexSearchChar(chars = [], opts = '') {
     replace: new RegExp(pattern, opts || 'ig'),
     // 用于替换所有匹配到的子串
     replacement: (...args) => {
+      // TODO 这里可能有个缺陷, 比如: abac 在替换 ac 时, 所有的 a 都会被替换掉, 但是 babcba 在替换 ba 时, 第 2 个 b 会被忽略掉
       const items = args.slice(1, chars.length + 2);
       const strs = [items[0]];
       for (let i = 1; i < items.length; i++) {
