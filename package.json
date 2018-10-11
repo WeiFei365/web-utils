@@ -31,7 +31,8 @@
   "homepage": "https://github.com/WeiFei365/web-utils#readme",
   "dependencies": {
     "history": "^4.6.3",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "6.24.1",
