@@ -22,6 +22,6 @@ export default function dateDays(start, end) {
 
   dateSet(min, 'h');
   dateSet(max, 'h');
-  
+
   return (max.getTime() - min.getTime()) / timeDay;
 }

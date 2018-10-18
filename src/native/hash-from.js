@@ -1,5 +1,4 @@
 import _trim from 'lodash/trim';
-import _isString from 'lodash/isString';
 
 import jsonTo from './json-to';
 

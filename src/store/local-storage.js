@@ -108,8 +108,8 @@ const localDft = {
   number0: (v) => _isNaN(+v) ? 0 : +v,
   number1: (v) => _isNaN(+v) ? 1 : +v,
   array: (v) => _isArray(v) ? v : [],
-  arrayString: (v, s, dft) => dft.array(v, s, dft).map((d) => dft.stringTrim(v, s, dft)).filter((d) => !!v),
-  arrayNumber: (v, s, dft) => dft.array(v, s, dft).map((d) => dft.number(v, s, dft)).filter((d) => !_isNaN(d)),
+  arrayString: (v, s, dft) => dft.array(v, s, dft).map((d) => dft.stringTrim(d, s, dft)).filter((d) => !!d),
+  arrayNumber: (v, s, dft) => dft.array(v, s, dft).map((d) => dft.number(d, s, dft)).filter((d) => !_isNaN(d)),
   object: (v) => _isObject(v) ? v : {},
 };
 
@@ -119,14 +119,18 @@ export function lstoreSet(path, value, isMerge = false, isSave = true) {
   if (isMerge) {
     const oldv = _get(store, path);
     if (_isObject(oldv) && _isObject(value)) {
+      /* eslint-disable no-param-reassign */
       value = _merge(oldv, value);
+      /* eslint-enable */
     }
   }
 
   // 验证顶级数据(如果是的话)正确性: 根据用户设定的校验器或默认校验器
   const vali = localDft[localKeys[path]] ? localDft[localKeys[path]] : localKeys[path];
   if (vali) {
+    /* eslint-disable no-param-reassign */
     value = vali(value, store, localDft);
+    /* eslint-enable */
   }
 
   _set(store, path, value);
@@ -191,4 +195,7 @@ export function lstoreKeys(useKeys) {
  * 方便开发调试, export 是为了和 store 在同一个作用域内
  * @method MVP_Store_LocalStorage
  */
-export const MVP_Store_LocalStorage = window.MVP_Store_LocalStorage = () => jsonTo(jsonFrom(store));
+/* eslint-disable camelcase */
+window.MVP_Store_LocalStorage = () => jsonTo(jsonFrom(store));
+export const MVP_Store_LocalStorage = window.MVP_Store_LocalStorage;
+/* eslint-enable */

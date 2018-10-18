@@ -100,4 +100,7 @@ export function lctQuery(excepts) {
  * 方便开发调试, export 是为了和 store 在同一个作用域内
  * @method MVP_Store_History
  */
-export const MVP_Store_History = window.MVP_Store_History = () => JSON.parse(JSON.stringify(store));
+/* eslint-disable camelcase */
+window.MVP_Store_History = () => JSON.parse(JSON.stringify(store));
+export const MVP_Store_History = window.MVP_Store_History;
+/* eslint-enable */

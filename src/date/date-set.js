@@ -21,6 +21,7 @@ import dateConstructor from './date-constructor';
  * @return {Date}                   [description]
  */
 export default function dateSet(any, endPoint, timezone = '') {
+  /* eslint-disable no-fallthrough */
   const date = dateConstructor(any, true);
 
   switch (endPoint) {

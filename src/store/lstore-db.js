@@ -43,6 +43,7 @@ import {
 
 export default class LStoreDB {
   constructor(props = {}) {
+    /* eslint-disable no-param-reassign,no-underscore-dangle */
     const self = this;
     // props.key = props.key || '';
     // for item(row)
@@ -51,6 +52,7 @@ export default class LStoreDB {
     props.searchBy = props.searchBy || self._searchBy;
 
     self.props = props;
+    /* eslint-enable */
   }
 
   _check = (data) => !!data;
@@ -95,7 +97,7 @@ export default class LStoreDB {
       return;
     }
 
-    let rowList = lstoreGet(props.key).filter((d) => !props.isEqual(d.data, data));
+    const rowList = lstoreGet(props.key).filter((d) => !props.isEqual(d.data, data));
     rowList.unshift({ data, time: Date.now() });
     lstoreSet(props.key, rowList.slice(0, 10));
   }

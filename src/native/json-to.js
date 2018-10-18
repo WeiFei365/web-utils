@@ -12,7 +12,7 @@ export default function jsonTo(jsonstr, dft) {
   }
 
   try {
-    dft = JSON.parse(jsonstr);
+    return JSON.parse(jsonstr);
   } catch (err) {
     // console.error(err);
   }

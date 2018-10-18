@@ -1,6 +1,6 @@
 import _isArray from 'lodash/isArray';
 import {
-  regexSPS
+  regexSPS,
 } from './const';
 
 
@@ -21,10 +21,12 @@ export default function regexSearchChar(chars = [], opts = '') {
   if (!_isArray(chars)) {
     return {};
   }
+  /* eslint-disable no-param-reassign */
   chars = chars.map((d) => String(d))
     .filter((d) => !!d && regexSPS().indexOf(d) === -1)
     // 正则表达式最多支持到 $99
     .slice(0, 98);
+  /* eslint-enable */
   if (!chars.length) {
     return {};
   }
@@ -41,7 +43,7 @@ export default function regexSearchChar(chars = [], opts = '') {
       // TODO 这里可能有个缺陷, 比如: abac 在替换 ac 时, 所有的 a 都会被替换掉, 但是 babcba 在替换 ba 时, 第 2 个 b 会被忽略掉
       const items = args.slice(1, chars.length + 2);
       const strs = [items[0]];
-      for (let i = 1; i < items.length; i++) {
+      for (let i = 1; i < items.length; i += 1) {
         const c = chars[i - 1];
         strs.push(`<em>${c}</em>`);
         strs.push(items[i].replace(new RegExp(c, 'ig'), `<em>${c}</em>`));

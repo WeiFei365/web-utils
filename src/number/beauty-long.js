@@ -10,7 +10,7 @@
  * @param  {Boolean}        [noZero=true] [当 n 非法时, 返回 '0' 或 '']
  * @return {String}                       [description]
  */
-export default function beautyLong(n, byLeft = true, flag = ' ', noZero=true) {
+export default function beautyLong(n, byLeft = true, flag = ' ', noZero = true) {
   let number = String(n).replace(/\D+/g, '');
   if (!number) {
     return noZero ? '' : '0';

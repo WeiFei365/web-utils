@@ -13,9 +13,11 @@ import LStoreDB from './lstore-db';
 lstoreKeys({
   'search-words': (v, s, dft) => dft.array(v, s, dft).filter((d) => {
     if (d instanceof Object) {
+      /* eslint-disable no-param-reassign */
       // 这里给一个初始毫秒值: 1, 而不是 0 是为了之后的 select 方便
       d.time = +d.time || 1;
       d.data = dft.stringTrim(d.data, s, dft);
+      /* eslint-enable */
       return !!d.data;
     }
     return false;

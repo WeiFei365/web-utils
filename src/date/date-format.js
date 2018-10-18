@@ -16,6 +16,7 @@ import dateConstructor from './date-constructor';
  * @return {String}                           [description]
  */
 export default function dateFormat(any, pattern = 'YYYY-MM-DD') {
+  /* eslint-disable no-param-reassign */
   const date = dateConstructor(any);
 
   const dict = {

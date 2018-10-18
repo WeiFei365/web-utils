@@ -18,7 +18,7 @@ export default function beautyUnit(n) {
     return String(number);
   }
 
-  number = new Number(number).toFixed(0);
+  number = Number(number).toFixed(0);
 
   let unit = ['', ''];
   if (number.length <= 8) {

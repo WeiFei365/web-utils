@@ -16,6 +16,6 @@ export default function dateConstructor(any, isSelf = false) {
   } else if (typeof any === 'number') {
     return new Date(any);
   }
-  const s = String(any ? any : 0);
+  const s = String(any || 0);
   return s.replace(/\d+/g, '').length ? new Date(s) : new Date(+s || 0);
 }

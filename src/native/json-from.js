@@ -15,7 +15,7 @@ export default function jsonFrom(jsondata, dft = '') {
   }
 
   try {
-    dft = JSON.stringify(jsondata);
+    return JSON.stringify(jsondata);
   } catch (err) {
     // console.error(err);
   }
