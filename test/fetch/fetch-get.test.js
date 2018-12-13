@@ -21,22 +21,14 @@ describe('fetch/fetch-get', function() {
         done(new Error('-test'));
       }, () => done());
     });
-    it(`fetchGet(/u/6710699?s=40&v=4, {}, {}, http://avatars3.githubusercontent.com) should return origin response`, function(done) {
+    it(`fetchGet(/u/6710699?s=40&v=4, {}, {}, https://avatars3.githubusercontent.com) should return origin response`, function(done) {
       fetchGet(
         '/u/6710699?s=40&v=4',
         {},
         {},
-        'http://avatars3.githubusercontent.com'
+        'https://avatars3.githubusercontent.com'
       ).then((response) => {
         done(response ? undefined : new Error('-blob'));
-        if (response) {
-          return Promise.all([
-            response.blob(),
-            Promise.resolve(response.headers.get('Content-Disposition')),
-          ]).then((blob, disposition) => {
-            console.log(blob, disposition);
-          })
-        }
       }, () => done(new Error('-blob')));
     });
     // it(`fetchGet(undefined, undefined, undefined, undefined) should return null`, function(done) {
