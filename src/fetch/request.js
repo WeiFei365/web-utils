@@ -4,6 +4,8 @@ import 'whatwg-fetch';
 // http 请求网络级的报错，如: 404、503、断网等
 const HTTP_ERROR = Math.random();
 
+const HTTP_CONTENT_TYPE = Math.random();
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return null;
@@ -34,10 +36,17 @@ export default function request(url, options) {
           code: HTTP_ERROR,
         };
       }
-      // TODO 这里只处理返回的 json 格式数据,
-      // 还可以处理流: response.blob(),
-      // 或者文本: response.text()
-      return response.json();
+      const contentType = response.headers.get('Content-Type') || '';
+      if (contentType.toLowerCase().indexOf('application/json') !== -1) {
+        return response.json();
+      }
+      return {
+        code: HTTP_CONTENT_TYPE,
+        // 可能需要执行：
+        // 1、response.blob()
+        // 2、response.text()
+        response,
+      }
     }, (error) => ({
       error,
       // 通信异常, 比如: 网络中断、跨域等
@@ -48,6 +57,10 @@ export default function request(url, options) {
       code: HTTP_ERROR,
     }))
     .then((data) => { // 统一处理接口状态, 返回调用层"需要的数据"
+      if (data.code === HTTP_CONTENT_TYPE) {
+        // 非 json 类型的响应，交由上层处理
+        return data.response;
+      }
       if (data.code === HTTP_ERROR) {
         // throw http 级的状态错误
         return Promise.reject(data.error);
