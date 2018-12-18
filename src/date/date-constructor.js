@@ -1,3 +1,6 @@
+import setWindow from '../window';
+setWindow('dateConstructor', dateConstructor);
+
 /**
  * 以各种形式构造 Date 实例
  * @method dateConstructor

@@ -1,5 +1,8 @@
 import dateConstructor from './date-constructor';
 
+import setWindow from '../window';
+setWindow('dateFormat', dateFormat);
+
 
 /**
  * 时间格式化

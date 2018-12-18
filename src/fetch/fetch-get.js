@@ -4,6 +4,9 @@ import _merge from 'lodash/merge';
 import hashTo from '../native/hash-to';
 import request from './request';
 
+import setWindow from '../window';
+setWindow('fetchGet', fetchGet);
+
 
 /**
  * [Post 类型接口, 默认发送数据类型为 body(application/json) 类型]

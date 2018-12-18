@@ -4,6 +4,8 @@ import _isObject from 'lodash/isObject';
 
 import jsonFrom from './json-from';
 
+import setWindow from '../window';
+setWindow('hashTo', hashTo);
 
 /**
  * [编码json为URL中需要的search或hash]

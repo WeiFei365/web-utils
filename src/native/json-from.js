@@ -1,5 +1,7 @@
 import _isNaN from 'lodash/isNaN';
 
+import setWindow from '../window';
+setWindow('jsonFrom', jsonFrom);
 
 /**
  * [安全的调用JSON.stringify]

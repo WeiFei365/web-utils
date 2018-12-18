@@ -1,3 +1,8 @@
+import setWindow from '../window';
+setWindow('regexPhone', regexPhone);
+setWindow('regexEmail', regexEmail);
+setWindow('regexSPS', regexSPS);
+
 // 手机号码
 export const regexPhone = () => /^1[0-9]{10}$/;
 

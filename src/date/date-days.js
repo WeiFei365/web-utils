@@ -1,6 +1,9 @@
 import dateConstructor from './date-constructor';
 import dateSet from './date-set';
 
+import setWindow from '../window';
+setWindow('dateDays', dateDays);
+
 
 // 一小时的毫秒值
 export const timeHour = 1000 * 60 * 60;

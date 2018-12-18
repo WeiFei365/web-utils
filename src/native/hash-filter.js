@@ -3,6 +3,8 @@ import _isString from 'lodash/isString';
 import hashTo from './hash-to';
 import hashFrom from './hash-from';
 
+import setWindow from '../window';
+setWindow('hashFilter', hashFilter);
 
 /**
  * [过滤 URL 的 search 或 hash 中的参数, 注意，返回值中不包含前缀 '?' 或 '#']
