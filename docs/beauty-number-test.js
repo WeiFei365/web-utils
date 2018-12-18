@@ -204,7 +204,19 @@ eval("var g;\r\n\r\n// This works in non-strict mode\r\ng = (function() {\r\n\tr
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = beautyNumber;\n\nvar _isNaN2 = __webpack_require__(/*! lodash/isNaN */ \"./node_modules/lodash/isNaN.js\");\n\nvar _isNaN3 = _interopRequireDefault(_isNaN2);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n/**\n * 格式化数值, 增加千位符, 不会增加小数部分的千位符\n * @author WEIFEI\n * @method beautyNumber\n * @param  {Number}   n       [description]\n * @param  {Boolean}  noZero  [如果结果是'0'时返回'']\n * @return {String}           [description]\n */\nfunction beautyNumber(n, noZero) {\n  var number = +n;\n  if ((0, _isNaN3.default)(number) || number === 0) {\n    return noZero ? '' : '0';\n  }\n  number = String(number);\n  if (number.split('.').filter(function (d) {\n    return d.length > 3;\n  }).length === 0) {\n    return number;\n  }\n  number = number.split('.');\n  number[0] = number[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',');\n  return number.join('.');\n}\n\n//# sourceURL=webpack:///./src/number/beauty-number.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = beautyNumber;\n\nvar _isNaN2 = __webpack_require__(/*! lodash/isNaN */ \"./node_modules/lodash/isNaN.js\");\n\nvar _isNaN3 = _interopRequireDefault(_isNaN2);\n\nvar _window = __webpack_require__(/*! ../window */ \"./src/window.js\");\n\nvar _window2 = _interopRequireDefault(_window);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n(0, _window2.default)('beautyNumber', beautyNumber);\n\n/**\n * 格式化数值, 增加千位符, 不会增加小数部分的千位符\n * @author WEIFEI\n * @method beautyNumber\n * @param  {Number}   n       [description]\n * @param  {Boolean}  noZero  [如果结果是'0'时返回'']\n * @return {String}           [description]\n */\nfunction beautyNumber(n, noZero) {\n  var number = +n;\n  if ((0, _isNaN3.default)(number) || number === 0) {\n    return noZero ? '' : '0';\n  }\n  number = String(number);\n  if (number.split('.').filter(function (d) {\n    return d.length > 3;\n  }).length === 0) {\n    return number;\n  }\n  number = number.split('.');\n  number[0] = number[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',');\n  return number.join('.');\n}\n\n//# sourceURL=webpack:///./src/number/beauty-number.js?");
+
+/***/ }),
+
+/***/ "./src/window.js":
+/*!***********************!*\
+  !*** ./src/window.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = setWindow;\nwindow.webUtils = window.webUtils || {};\n\nfunction setWindow(name, func) {\n  window.webUtils[name] = func;\n}\n\n//# sourceURL=webpack:///./src/window.js?");
 
 /***/ }),
 

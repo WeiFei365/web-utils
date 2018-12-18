@@ -94,7 +94,19 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = valiFilename;\n/**\n * [校验文件名，去除非法的字符]\n * @author WEIFEI\n * @method valiFilename\n * @param  {String}     name          [文件/文件夹名]\n * @param  {String}     [dftChar='-'] [非法字符的替换]\n * @return {String}                   [description]\n */\nfunction valiFilename(name) {\n  var dftChar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-';\n\n  return String(typeof name === 'string' ? name : '').replace(/\\/|\\\\|>|<|\\?|:|\"|'|\\^|!|;|\\*|&|%|\\$|#|@/g, '?').replace(/\\?+/g, dftChar).replace(/\\n|\\f|\\r|\\t|\\v/g, ' ').replace(/\\s+/g, ' ').substr(0, 250);\n}\n\n//# sourceURL=webpack:///./src/other/vali-filename.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = valiFilename;\n\nvar _window = __webpack_require__(/*! ../window */ \"./src/window.js\");\n\nvar _window2 = _interopRequireDefault(_window);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n(0, _window2.default)('valiFilename', valiFilename);\n\n/**\n * [校验文件名，去除非法的字符]\n * @author WEIFEI\n * @method valiFilename\n * @param  {String}     name          [文件/文件夹名]\n * @param  {String}     [dftChar='-'] [非法字符的替换]\n * @return {String}                   [description]\n */\nfunction valiFilename(name) {\n  var dftChar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-';\n\n  return String(typeof name === 'string' ? name : '').replace(/\\/|\\\\|>|<|\\?|:|\"|'|\\^|!|;|\\*|&|%|\\$|#|@/g, '?').replace(/\\?+/g, dftChar).replace(/\\n|\\f|\\r|\\t|\\v/g, ' ').replace(/\\s+/g, ' ').substr(0, 250);\n}\n\n//# sourceURL=webpack:///./src/other/vali-filename.js?");
+
+/***/ }),
+
+/***/ "./src/window.js":
+/*!***********************!*\
+  !*** ./src/window.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = setWindow;\nwindow.webUtils = window.webUtils || {};\n\nfunction setWindow(name, func) {\n  window.webUtils[name] = func;\n}\n\n//# sourceURL=webpack:///./src/window.js?");
 
 /***/ }),
 

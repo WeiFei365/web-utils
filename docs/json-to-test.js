@@ -204,7 +204,7 @@ eval("var g;\r\n\r\n// This works in non-strict mode\r\ng = (function() {\r\n\tr
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = jsonFrom;\n\nvar _isNaN2 = __webpack_require__(/*! lodash/isNaN */ \"./node_modules/lodash/isNaN.js\");\n\nvar _isNaN3 = _interopRequireDefault(_isNaN2);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n/**\n * [安全的调用JSON.stringify]\n * @author WEIFEI\n * @method jsonFrom\n * @param  {[type]} jsondata [description]\n * @param  {String} [dft=''] [在非法的 jsondata 或转换出错时的返回值]\n * @return {[type]}          [description]\n */\nfunction jsonFrom(jsondata) {\n  var dft = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n\n  if (jsondata === null || jsondata === undefined || (0, _isNaN3.default)(jsondata)) {\n    return dft;\n  }\n\n  try {\n    return JSON.stringify(jsondata);\n  } catch (err) {\n    // console.error(err);\n  }\n\n  return dft;\n}\n\n//# sourceURL=webpack:///./src/native/json-from.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = jsonFrom;\n\nvar _isNaN2 = __webpack_require__(/*! lodash/isNaN */ \"./node_modules/lodash/isNaN.js\");\n\nvar _isNaN3 = _interopRequireDefault(_isNaN2);\n\nvar _window = __webpack_require__(/*! ../window */ \"./src/window.js\");\n\nvar _window2 = _interopRequireDefault(_window);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n(0, _window2.default)('jsonFrom', jsonFrom);\n\n/**\n * [安全的调用JSON.stringify]\n * @author WEIFEI\n * @method jsonFrom\n * @param  {[type]} jsondata [description]\n * @param  {String} [dft=''] [在非法的 jsondata 或转换出错时的返回值]\n * @return {[type]}          [description]\n */\nfunction jsonFrom(jsondata) {\n  var dft = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n\n  if (jsondata === null || jsondata === undefined || (0, _isNaN3.default)(jsondata)) {\n    return dft;\n  }\n\n  try {\n    return JSON.stringify(jsondata);\n  } catch (err) {\n    // console.error(err);\n  }\n\n  return dft;\n}\n\n//# sourceURL=webpack:///./src/native/json-from.js?");
 
 /***/ }),
 
@@ -216,7 +216,19 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = jsonTo;\n/**\n * [安全的将字符串转成 json]\n * @author WEIFEI\n * @method jsonTo\n * @param  {String} jsonstr [description]\n * @param  {[type]} dft     [转换失败或非法 jsonstr 时的返回值]\n * @return {[type]}         [description]\n */\nfunction jsonTo(jsonstr, dft) {\n  if (!jsonstr) {\n    return dft;\n  }\n\n  try {\n    return JSON.parse(jsonstr);\n  } catch (err) {\n    // console.error(err);\n  }\n\n  return dft;\n}\n\n//# sourceURL=webpack:///./src/native/json-to.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = jsonTo;\n\nvar _window = __webpack_require__(/*! ../window */ \"./src/window.js\");\n\nvar _window2 = _interopRequireDefault(_window);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n(0, _window2.default)('jsonTo', jsonTo);\n\n/**\n * [安全的将字符串转成 json]\n * @author WEIFEI\n * @method jsonTo\n * @param  {String} jsonstr [description]\n * @param  {[type]} dft     [转换失败或非法 jsonstr 时的返回值]\n * @return {[type]}         [description]\n */\nfunction jsonTo(jsonstr, dft) {\n  if (!jsonstr) {\n    return dft;\n  }\n\n  try {\n    return JSON.parse(jsonstr);\n  } catch (err) {\n    // console.error(err);\n  }\n\n  return dft;\n}\n\n//# sourceURL=webpack:///./src/native/json-to.js?");
+
+/***/ }),
+
+/***/ "./src/window.js":
+/*!***********************!*\
+  !*** ./src/window.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = setWindow;\nwindow.webUtils = window.webUtils || {};\n\nfunction setWindow(name, func) {\n  window.webUtils[name] = func;\n}\n\n//# sourceURL=webpack:///./src/window.js?");
 
 /***/ }),
 
