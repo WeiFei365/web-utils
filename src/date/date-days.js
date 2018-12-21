@@ -3,6 +3,9 @@ import dateSet from './date-set';
 
 import setWindow from '../window';
 setWindow('dateDays', dateDays);
+setWindow('timeHour', timeHour);
+setWindow('timeDay', timeDay);
+setWindow('timeWeek', timeWeek);
 
 
 // 一小时的毫秒值
