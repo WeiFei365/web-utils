@@ -16,28 +16,29 @@ setWindow('dateFormat', dateFormat);
  *                                            EE 的输出如: 周四,
  *                                            EEE 的输出如: 星期四,
  *                                            - 可以改为任意值, 如: YYYY年MM月DD日HH时mm分ss秒 S毫秒 EE]
+ * @param  {String}   [timezone='']           [时区，默认本地时区，还支持 UTC 时区]
  * @return {String}                           [description]
  */
-export default function dateFormat(any, pattern = 'YYYY-MM-DD') {
+export default function dateFormat(any, pattern = 'YYYY-MM-DD', timezone = '') {
   /* eslint-disable no-param-reassign */
   const date = dateConstructor(any);
 
   const dict = {
-    'M+': date.getMonth() + 1,
-    'D+': date.getDate(),
-    'h+': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12,
-    'H+': date.getHours(),
-    'm+': date.getMinutes(),
-    's+': date.getSeconds(),
-    'q+': Math.floor((date.getMonth() + 3) / 3),
-    S: date.getMilliseconds(),
+    'M+': date[`get${timezone}Month`]() + 1,
+    'D+': date[`get${timezone}Date`](),
+    'h+': date[`get${timezone}Hours`]() % 12 === 0 ? 12 : date[`get${timezone}Hours`]() % 12,
+    'H+': date[`get${timezone}Hours`](),
+    'm+': date[`get${timezone}Minutes`](),
+    's+': date[`get${timezone}Seconds`](),
+    'q+': Math.floor((date[`get${timezone}Month`]() + 3) / 3),
+    S: date[`get${timezone}Milliseconds`](),
   };
   // 日, 一, 二, 三, 四, 五, 六
   const weekDay = ['\u65e5', '\u4e00', '\u4e8c', '\u4e09', '\u56db', '\u4e94', '\u516d'];
 
   // 替换模板中的年
   if (/(Y+)/.test(pattern)) {
-    pattern = pattern.replace(RegExp.$1, String(date.getFullYear()).substr(4 - RegExp.$1.length));
+    pattern = pattern.replace(RegExp.$1, String(date[`get${timezone}FullYear`]()).substr(4 - RegExp.$1.length));
   }
   // 替换一周中的某天
   if (/(E+)/.test(pattern)) {
@@ -49,7 +50,7 @@ export default function dateFormat(any, pattern = 'YYYY-MM-DD') {
       // 前缀为: 星期
       pre = '\u661f\u671f';
     }
-    pattern = pattern.replace(RegExp.$1, `${pre}${weekDay[date.getDay()]}`);
+    pattern = pattern.replace(RegExp.$1, `${pre}${weekDay[date[`get${timezone}Day`]()]}`);
   }
   // 替换其他的标志
   Object.keys(dict).forEach((d) => {
