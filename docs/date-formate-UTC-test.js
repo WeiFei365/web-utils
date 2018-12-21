@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./test/date/date-formate.test.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./test/date/date-formate-UTC.test.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -95,6 +95,18 @@
 
 "use strict";
 eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = dateConstructor;\n\nvar _window = __webpack_require__(/*! ../window */ \"./src/window.js\");\n\nvar _window2 = _interopRequireDefault(_window);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n(0, _window2.default)('dateConstructor', dateConstructor);\n\n/**\n * 以各种形式构造 Date 实例\n * @method dateConstructor\n * @param  {Date|Number|String} any             [支持的类型:\n *                                              时间毫秒值,\n *                                              Date 实例,\n *                                              Date 字符串, 需要能被原生 Date 解析]\n * @param  {Boolean}            [isSelf=false]  [如果 any 为 Date 实例类型, 是否直接返回, 还是返回新构造的 Date 实例]\n * @return {Date}                               [description]\n */\nfunction dateConstructor(any) {\n  var isSelf = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;\n\n  if (any instanceof Date) {\n    // TODO 这里使用 any.getTime 来获取构造新 Date 实例的方式可能因为运行时的环境或时区问题,\n    // 导致返回的新 Date 实例和 any 表示的时间不同\n    return isSelf ? any : new Date(any.getTime());\n  } else if (typeof any === 'number') {\n    return new Date(any);\n  }\n  var s = String(any || 0);\n  return s.replace(/\\d+/g, '').length ? new Date(s) : new Date(+s || 0);\n}\n\n//# sourceURL=webpack:///./src/date/date-constructor.js?");
+
+/***/ }),
+
+/***/ "./src/date/date-format-UTC.js":
+/*!*************************************!*\
+  !*** ./src/date/date-format-UTC.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = dateFormatUTC;\n\nvar _dateFormat = __webpack_require__(/*! ./date-format */ \"./src/date/date-format.js\");\n\nvar _dateFormat2 = _interopRequireDefault(_dateFormat);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n/**\n * 时间格式化: 返回 UTC 时区的字串\n * @author WEIFEI\n * @method dateFormatUTC\n * @param  {[type]}      any     [请参考 ./date-format.js 中的说明]\n * @param  {[type]}      pattern [请参考 ./date-format.js 中的说明]\n * @return {[type]}              [description]\n */\nfunction dateFormatUTC(any, pattern) {\n  return (0, _dateFormat2.default)(any, pattern, 'UTC');\n}\n\n//# sourceURL=webpack:///./src/date/date-format-UTC.js?");
 
 /***/ }),
 
@@ -122,15 +134,15 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 
 /***/ }),
 
-/***/ "./test/date/date-formate.test.js":
-/*!****************************************!*\
-  !*** ./test/date/date-formate.test.js ***!
-  \****************************************/
+/***/ "./test/date/date-formate-UTC.test.js":
+/*!********************************************!*\
+  !*** ./test/date/date-formate-UTC.test.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar dateFormat = __webpack_require__(/*! ../../src/date/date-format.js */ \"./src/date/date-format.js\");\n\ndescribe('date/date-format', function () {\n  describe('@dateFormat(date, pattern)', function () {\n    var defaultDate = new Date(1538287654321);\n    if (defaultDate.getDate() !== 30 || defaultDate.getHours() !== 14) {\n      it('你所在的时区不是 GMT+0800 (中国标准时间)，因此略过了该测试', function () {\n        chai.assert.strictEqual(1 + 1, 2);\n      });\n      return;\n    }\n    [\n    // 毫秒值\n    [null, undefined, '1970-01-01'], [defaultDate.getTime(), undefined, '2018-09-30'],\n    // Date 实例\n    [new Date('2018-09-30'), 'MM-DD', '09-30'],\n    // Date 字符串\n    ['2018-09-30', 'MM-DD', '09-30'],\n    // pattern 模板\n    [defaultDate.getTime(), 'YYYY年MM月DD日HH时mm分ss秒S毫秒EEE', '2018年09月30日14时07分34秒321毫秒星期日'], [defaultDate.getTime(), 'EEE', '星期日']].forEach(function (d) {\n      var date = d[0];\n      var pattern = d[1];\n      it('dateFormat(' + date + ', ' + pattern + ') should return ' + d[2], function () {\n        chai.assert.strictEqual(dateFormat.default(date, pattern), d[2]);\n      });\n    });\n  });\n});\n\n//# sourceURL=webpack:///./test/date/date-formate.test.js?");
+eval("\n\nvar dateFormatUTC = __webpack_require__(/*! ../../src/date/date-format-UTC.js */ \"./src/date/date-format-UTC.js\");\n\ndescribe('date/date-format', function () {\n  describe('@dateFormatUTC(date, pattern)', function () {\n    var defaultDate = new Date(1538287654321);\n    if (defaultDate.getDate() !== 30 || defaultDate.getHours() !== 14) {\n      it('你所在的时区不是 GMT+0800 (中国标准时间)，因此略过了该测试', function () {\n        chai.assert.strictEqual(1 + 1, 2);\n      });\n      return;\n    }\n    [\n    // 本地时区\n    // [1538287654321, 'YYYY-MM-DD HH:mm:ss +S EEE', '2018-09-30 14:07:34 +321 星期日'],\n    // UTC时区\n    [1538287654321, 'YYYY-MM-DD HH:mm:ss +S EEE', '2018-09-30 06:07:34 +321 星期日']].forEach(function (d) {\n      var date = d[0];\n      var pattern = d[1];\n      it('dateFormatUTC(' + date + ', ' + pattern + ') should return ' + d[2], function () {\n        chai.assert.strictEqual(dateFormatUTC.default(date, pattern), d[2]);\n      });\n    });\n  });\n});\n\n//# sourceURL=webpack:///./test/date/date-formate-UTC.test.js?");
 
 /***/ })
 
