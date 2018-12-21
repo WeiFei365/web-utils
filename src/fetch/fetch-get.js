@@ -24,6 +24,8 @@ export default function fetchGet(pathname = '/', data, options = {}, host = 'htt
 
   return request(`${host}${pathname}${search}`, _merge({
     method: 'GET',
+    // 解决跨域
+    // credentials: 'include',
     headers: {
       // 'User-Token': user.token || '',
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',

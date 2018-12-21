@@ -22,6 +22,8 @@ export default function fetchPost(pathname = '/', data, options = {}, host = 'ht
 
   return request(`${host}${pathname}`, _merge({
     method: 'POST',
+    // 解决跨域
+    // credentials: 'include',
     headers: {
       // 'User-Token': user.token || '',
       'Content-Type': 'application/json; charset=UTF-8',
