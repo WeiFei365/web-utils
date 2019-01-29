@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "mocha:init": "mocha init",
-    "mocha:docs": "mocha --reporter mochawesome --reporter-options reportDir=./docs,reportFilename=index,cdn=true",
+    "mocha:docs": "mocha --reporter-options reportDir=./docs,reportFilename=index,cdn=true",
     "docs": "webpack --mode development --config webpack/webpack.config.dev.js --color --hide-modules --display-optimization-bailout",
     "start": "webpack-dev-server --mode development --config webpack/webpack.config.dev.js --color --hide-modules --display-optimization-bailout"
   },

@@ -1,6 +1,3 @@
-import setWindow from '../window';
-setWindow('valiFilename', valiFilename);
-
 /**
  * [校验文件名，去除非法的字符]
  * @author WEIFEI

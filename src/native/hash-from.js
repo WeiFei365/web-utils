@@ -2,8 +2,6 @@ import _trim from 'lodash/trim';
 
 import jsonTo from './json-to';
 
-import setWindow from '../window';
-setWindow('hashFrom', hashFrom);
 
 /**
  * [解码 url 中的 search 或 hash 成 json 对象]

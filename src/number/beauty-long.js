@@ -1,6 +1,3 @@
-import setWindow from '../window';
-setWindow('beautyLong', beautyLong);
-
 /**
  * 分隔显示大数值, 如: '1234 5678 90'
  * @author WEIFEI

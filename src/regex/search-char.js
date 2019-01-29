@@ -3,8 +3,6 @@ import {
   regexSPS,
 } from './const';
 
-import setWindow from '../window';
-setWindow('regexSearchChar', regexSearchChar);
 
 /**
  * [编译用于按字符来匹配/高亮字符串的正则模板, 会过滤掉正则中的特殊字符]

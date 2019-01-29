@@ -1,7 +1,5 @@
 import _isNaN from 'lodash/isNaN';
 
-import setWindow from '../window';
-setWindow('beautyUnit', beautyUnit);
 
 /**
  * 模糊大数值的显示, 如: 6000万、5000亿、4000万亿

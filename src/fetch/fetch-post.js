@@ -4,8 +4,6 @@ import _merge from 'lodash/merge';
 import jsonFrom from '../native/json-from';
 import request from './request';
 
-import setWindow from '../window';
-setWindow('fetchPost', fetchPost);
 
 /**
  * [Get 类型接口, 默认发送数据类型为 hash(search) 类型]

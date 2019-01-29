@@ -1,7 +1,5 @@
 import dateConstructor from './date-constructor';
 
-import setWindow from '../window';
-setWindow('dateSet', dateSet);
 
 /**
  * 日期重置工具,

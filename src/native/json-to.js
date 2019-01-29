@@ -1,6 +1,3 @@
-import setWindow from '../window';
-setWindow('jsonTo', jsonTo);
-
 /**
  * [安全的将字符串转成 json]
  * @author WEIFEI

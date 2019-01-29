@@ -40,12 +40,6 @@ import createHistory from 'history/createBrowserHistory';
 import hashFilter from '../native/hash-filter';
 import hashFrom from '../native/hash-from';
 
-import setWindow from '../window';
-setWindow('lctQuery', lctQuery);
-setWindow('lctGet', lctGet);
-setWindow('lctReplace', lctReplace);
-setWindow('lctPush', lctPush);
-
 
 // 存储池
 const store = {};

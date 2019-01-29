@@ -1,7 +1,5 @@
 import beautyNumber from './beauty-number';
 
-import setWindow from '../window';
-setWindow('beautyFloat', beautyFloat);
 
 /**
  * 格式化数值, 整数部分增加千位符, 小数部分截取需要的长度
