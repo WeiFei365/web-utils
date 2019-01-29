@@ -4,27 +4,13 @@
  * @author WEIFEI
  */
 
-import { lstoreKeys } from './local-storage';
 import LStoreDB from './lstore-db';
 
 
-// 初始化 localStorage 交互 KEY 和校验器
-lstoreKeys({
-  'user-list': (v, s, dft) => dft.array(v, s, dft).filter((d) => {
-    if (d instanceof Object && d.data instanceof Object && d.data.id && d.data.name) {
-      /* eslint-disable no-param-reassign */
-      // 这里给一个初始毫秒值: 1, 而不是 0 是为了之后的 select 方便
-      d.time = +d.time || 1;
-      d.data.id = String(d.data.id);
-      d.data.name = String(d.data.name);
-      /* eslint-enable */
-      return true;
-    }
-    return false;
-  }),
-});
 // 实例化
 const userList = new LStoreDB({
+  // 不存储到 localStorage
+  isSaveROM: false,
   key: 'user-list',
   check: (data) => {
     /* eslint-disable no-param-reassign */
@@ -38,13 +24,17 @@ const userList = new LStoreDB({
     if ([null, undefined].indexOf(data.name) !== -1) {
       return false;
     }
-    data.id = String(data.id);
+    data.id = data.id;
     data.name = String(data.name);
     /* eslint-enable */
-    return true;
+    return data;
   },
-  isEqual: (oldd, newd) => newd && newd instanceof Object && oldd.id === String(newd.id) && oldd.name === String(newd.name),
-  searchBy: (data) => [data.name, data.id],
+  isEqual: (oldd, newd) => newd && newd instanceof Object && oldd.id === newd.id && oldd.name === newd.name,
+  searchBy: (data) => [data.name, String(data.id)],
 });
 
-export default userList;
+export default {
+  add: userList.add,
+  select: userList.select,
+  delete: userList.delete,
+};
