@@ -94,19 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.regexSPS = exports.regexEmail = exports.regexPhone = undefined;\n\nvar _window = __webpack_require__(/*! ../window */ \"./src/window.js\");\n\nvar _window2 = _interopRequireDefault(_window);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n(0, _window2.default)('regexPhone', regexPhone);\n(0, _window2.default)('regexEmail', regexEmail);\n(0, _window2.default)('regexSPS', regexSPS);\n\n// 手机号码\nvar regexPhone = exports.regexPhone = function regexPhone() {\n  return (/^1[0-9]{10}$/\n  );\n};\n\n// 电子邮箱\nvar regexEmail = exports.regexEmail = function regexEmail() {\n  return (/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$/\n  );\n};\n\n// 正则中的特殊字符\nvar regexSPS = exports.regexSPS = function regexSPS() {\n  return [// ^$.*+-?=!:|\\/()[]{}\n  '^', '$', '.', '*', '+', '-', '?', '=', '!', ':', '|', '\\\\', '/', '(', ')', '[', ']', '{', '}'];\n};\n\n//# sourceURL=webpack:///./src/regex/const.js?");
-
-/***/ }),
-
-/***/ "./src/window.js":
-/*!***********************!*\
-  !*** ./src/window.js ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = setWindow;\nwindow.webUtils = window.webUtils || {};\n\nfunction setWindow(name, func) {\n  window.webUtils[name] = func;\n}\n\n//# sourceURL=webpack:///./src/window.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n// 手机号码\nvar regexPhone = exports.regexPhone = function regexPhone() {\n  return (/^1[0-9]{10}$/\n  );\n};\n\n// 电子邮箱\nvar regexEmail = exports.regexEmail = function regexEmail() {\n  return (/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$/\n  );\n};\n\n// 正则中的特殊字符\nvar regexSPS = exports.regexSPS = function regexSPS() {\n  return [// ^$.*+-?=!:|\\/()[]{}\n  '^', '$', '.', '*', '+', '-', '?', '=', '!', ':', '|', '\\\\', '/', '(', ')', '[', ']', '{', '}'];\n};\n\n//# sourceURL=webpack:///./src/regex/const.js?");
 
 /***/ }),
 

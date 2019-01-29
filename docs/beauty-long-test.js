@@ -94,19 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = beautyLong;\n\nvar _window = __webpack_require__(/*! ../window */ \"./src/window.js\");\n\nvar _window2 = _interopRequireDefault(_window);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n(0, _window2.default)('beautyLong', beautyLong);\n\n/**\n * 分隔显示大数值, 如: '1234 5678 90'\n * @author WEIFEI\n * @method beautyLong\n * @param  {Number|String}  n             [description]\n * @param  {Boolean}        [byLeft=true] [例如:\n *                                        true: 1234 5678 90,\n *                                        false: 12 3456 7890]\n * @param  {String}         [flag=' ']    [要替换成的分隔符, 默认是: ' ']\n * @param  {Boolean}        [noZero=true] [当 n 非法时, 返回 '0' 或 '']\n * @return {String}                       [description]\n */\nfunction beautyLong(n) {\n  var byLeft = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;\n  var flag = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';\n  var noZero = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;\n\n  var number = String(n).replace(/\\D+/g, '');\n  if (!number) {\n    return noZero ? '' : '0';\n  }\n  if (number.length < 5) {\n    return number;\n  }\n  // 反转\n  if (byLeft) {\n    number = number.split('').reverse().join('');\n  }\n  // 添加 flag\n  number = number.replace(/\\B(?=(\\d{4})+(?!\\d))/g, flag);\n  return byLeft ? number.split('').reverse().join('') : number;\n}\n\n//# sourceURL=webpack:///./src/number/beauty-long.js?");
-
-/***/ }),
-
-/***/ "./src/window.js":
-/*!***********************!*\
-  !*** ./src/window.js ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = setWindow;\nwindow.webUtils = window.webUtils || {};\n\nfunction setWindow(name, func) {\n  window.webUtils[name] = func;\n}\n\n//# sourceURL=webpack:///./src/window.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = beautyLong;\n/**\n * 分隔显示大数值, 如: '1234 5678 90'\n * @author WEIFEI\n * @method beautyLong\n * @param  {Number|String}  n             [description]\n * @param  {Boolean}        [byLeft=true] [例如:\n *                                        true: 1234 5678 90,\n *                                        false: 12 3456 7890]\n * @param  {String}         [flag=' ']    [要替换成的分隔符, 默认是: ' ']\n * @param  {Boolean}        [noZero=true] [当 n 非法时, 返回 '0' 或 '']\n * @return {String}                       [description]\n */\nfunction beautyLong(n) {\n  var byLeft = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;\n  var flag = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';\n  var noZero = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;\n\n  var number = String(n).replace(/\\D+/g, '');\n  if (!number) {\n    return noZero ? '' : '0';\n  }\n  if (number.length < 5) {\n    return number;\n  }\n  // 反转\n  if (byLeft) {\n    number = number.split('').reverse().join('');\n  }\n  // 添加 flag\n  number = number.replace(/\\B(?=(\\d{4})+(?!\\d))/g, flag);\n  return byLeft ? number.split('').reverse().join('') : number;\n}\n\n//# sourceURL=webpack:///./src/number/beauty-long.js?");
 
 /***/ }),
 

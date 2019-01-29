@@ -204,19 +204,7 @@ eval("var g;\r\n\r\n// This works in non-strict mode\r\ng = (function() {\r\n\tr
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = beautyUnit;\n\nvar _isNaN2 = __webpack_require__(/*! lodash/isNaN */ \"./node_modules/lodash/isNaN.js\");\n\nvar _isNaN3 = _interopRequireDefault(_isNaN2);\n\nvar _window = __webpack_require__(/*! ../window */ \"./src/window.js\");\n\nvar _window2 = _interopRequireDefault(_window);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n(0, _window2.default)('beautyUnit', beautyUnit);\n\n/**\n * 模糊大数值的显示, 如: 6000万、5000亿、4000万亿\n * @author WEIFEI\n * @method beautyUnit\n * @param  {Number}   n [待处理的数值]\n * @return {String}     [description]\n */\nfunction beautyUnit(n) {\n  var number = +n;\n  if ((0, _isNaN3.default)(number)) {\n    return '0';\n  }\n  number = Math.abs(number);\n  if (number < 10000) {\n    return String(number);\n  }\n\n  number = Number(number).toFixed(0);\n\n  var unit = ['', ''];\n  if (number.length <= 8) {\n    unit = [/\\d{4}$/, '万'];\n  } else if (number.length <= 12) {\n    unit = [/\\d{8}$/, '亿'];\n  } else if (number.length <= 16) {\n    unit = [/\\d{12}$/, '万亿'];\n  } else {\n    return '不计其数';\n  }\n\n  number = number.replace(unit[0], '').split('').map(function (d, i) {\n    return i === 0 ? d : 0;\n  }).join('');\n  return '' + number + unit[1];\n}\n\n//# sourceURL=webpack:///./src/number/beauty-unit.js?");
-
-/***/ }),
-
-/***/ "./src/window.js":
-/*!***********************!*\
-  !*** ./src/window.js ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = setWindow;\nwindow.webUtils = window.webUtils || {};\n\nfunction setWindow(name, func) {\n  window.webUtils[name] = func;\n}\n\n//# sourceURL=webpack:///./src/window.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = beautyUnit;\n\nvar _isNaN2 = __webpack_require__(/*! lodash/isNaN */ \"./node_modules/lodash/isNaN.js\");\n\nvar _isNaN3 = _interopRequireDefault(_isNaN2);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n/**\n * 模糊大数值的显示, 如: 6000万、5000亿、4000万亿\n * @author WEIFEI\n * @method beautyUnit\n * @param  {Number}   n [待处理的数值]\n * @return {String}     [description]\n */\nfunction beautyUnit(n) {\n  var number = +n;\n  if ((0, _isNaN3.default)(number)) {\n    return '0';\n  }\n  number = Math.abs(number);\n  if (number < 10000) {\n    return String(number);\n  }\n\n  number = Number(number).toFixed(0);\n\n  var unit = ['', ''];\n  if (number.length <= 8) {\n    unit = [/\\d{4}$/, '万'];\n  } else if (number.length <= 12) {\n    unit = [/\\d{8}$/, '亿'];\n  } else if (number.length <= 16) {\n    unit = [/\\d{12}$/, '万亿'];\n  } else {\n    return '不计其数';\n  }\n\n  number = number.replace(unit[0], '').split('').map(function (d, i) {\n    return i === 0 ? d : 0;\n  }).join('');\n  return '' + number + unit[1];\n}\n\n//# sourceURL=webpack:///./src/number/beauty-unit.js?");
 
 /***/ }),
 
