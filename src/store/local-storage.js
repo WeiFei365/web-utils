@@ -95,7 +95,7 @@ const store = {
 // 交互KEY
 const localKeys = {
   hello: 'string',
-  world: (v, store, dft) => dft.string(v, store, dft),
+  world: (v, lstore, dft) => dft.string(v, lstore, dft),
 };
 // 内置交互KEY 字段
 const localDft = {

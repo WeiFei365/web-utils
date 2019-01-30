@@ -78,13 +78,14 @@ export default class LStoreDB {
 
   saveValidator = (v, store, dft) => {
     const { props } = this;
+    /* eslint-disable no-param-reassign */
     // 数组
     v = dft.array(v, store, dft);
     // 对象并且包含 time 字段
     v = v.filter((item) => !!+dft.object(item, store, dft).time);
     // 对象并且 data 字段符合 check 规则
     v = v.filter((item) => !!props.check(item.data));
-
+    /* eslint-enable */
     return v;
   };
 

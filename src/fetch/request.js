@@ -46,7 +46,7 @@ export default function request(url, options) {
         // 1、response.blob()
         // 2、response.text()
         response,
-      }
+      };
     }, (error) => ({
       error,
       // 通信异常, 比如: 网络中断、跨域等
