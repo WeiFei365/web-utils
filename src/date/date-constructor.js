@@ -13,7 +13,8 @@ export default function dateConstructor(any, isSelf = false) {
     // TODO 这里使用 any.getTime 来获取构造新 Date 实例的方式可能因为运行时的环境或时区问题,
     // 导致返回的新 Date 实例和 any 表示的时间不同
     return isSelf ? any : new Date(any.getTime());
-  } else if (typeof any === 'number') {
+  }
+  if (typeof any === 'number') {
     return new Date(any);
   }
   const s = String(any || 0);

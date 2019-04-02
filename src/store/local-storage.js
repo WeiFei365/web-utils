@@ -203,5 +203,5 @@ export function lstoreKeys(useKeys) {
  */
 /* eslint-disable camelcase */
 window.MVP_Store_LocalStorage = () => jsonTo(jsonFrom(store));
-export const MVP_Store_LocalStorage = window.MVP_Store_LocalStorage;
+export const { MVP_Store_LocalStorage } = window;
 /* eslint-enable */

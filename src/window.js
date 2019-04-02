@@ -1,3 +1,5 @@
+import * as browser from './browser/browser';
+
 import dateConstructor from './date/date-constructor';
 import dateDays, { timeHour, timeDay, timeWeek } from './date/date-days';
 import dateFormatUTC from './date/date-format-UTC';
@@ -32,6 +34,8 @@ import LStoreDB from './store/lstore-db';
 
 
 window.webUtils = {
+  browser,
+
   dateConstructor,
   dateDays,
   timeHour,

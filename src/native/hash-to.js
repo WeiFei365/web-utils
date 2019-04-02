@@ -19,7 +19,8 @@ export default function hashTo(data) {
     let hsv = data[hsk];
     if (hsv === null || hsv === undefined || _isNaN(hsv)) {
       return hsk;
-    } else if (_isArray(hsv) || _isObject(hsv)) {
+    }
+    if (_isArray(hsv) || _isObject(hsv)) {
       hsv = jsonFrom(hsv);
     } else {
       hsv = String(hsv);

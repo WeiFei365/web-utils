@@ -25,7 +25,8 @@ export default function hashFrom(str = '', isValueJson = false, isLowerCaseKey =
     .filter((d) => {
       if (d.length === 2) {
         return true;
-      } else if (d.length === 1) {
+      }
+      if (d.length === 1) {
         // 填充无VALUE的参数
         d.push('');
         return true;

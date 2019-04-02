@@ -9,9 +9,9 @@
  */
 export default function valiFilename(name, dftChar = '-', maxLength = 250) {
   return String(typeof name === 'string' ? name : '')
-  .replace(/\/|\\|>|<|\?|:|"|'|\^|!|;|\*|&|%|\$|#|@/g, '?')
-  .replace(/\?+/g, dftChar)
-  .replace(/\n|\f|\r|\t|\v/g, ' ')
-  .replace(/\s+/g, ' ')
-  .substr(0, maxLength);
+    .replace(/\/|\\|>|<|\?|:|"|'|\^|!|;|\*|&|%|\$|#|@/g, '?')
+    .replace(/\?+/g, dftChar)
+    .replace(/\n|\f|\r|\t|\v/g, ' ')
+    .replace(/\s+/g, ' ')
+    .substr(0, maxLength);
 }

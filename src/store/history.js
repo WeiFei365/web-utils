@@ -102,5 +102,5 @@ export function lctQuery(excepts) {
  */
 /* eslint-disable camelcase */
 window.MVP_Store_History = () => JSON.parse(JSON.stringify(store));
-export const MVP_Store_History = window.MVP_Store_History;
+export const { MVP_Store_History } = window;
 /* eslint-enable */

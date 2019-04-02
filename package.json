@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/WeiFei365/web-utils#readme",
   "dependencies": {
+    "bowser": "^2.1.2",
     "history": "^4.6.3",
     "lodash": "^4.17.11",
     "whatwg-fetch": "^2.0.3"
